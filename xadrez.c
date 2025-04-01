@@ -3,32 +3,63 @@
 // Desafio de Xadrez - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
-void MovTorre(int casas){
-    if (casas > 0)
+void MovTorre(int casas){ // Recursividade da peça Torre - 5 casas para a "Direita"
+    if (casas > 0) // Condição da recursividade
     {
-        printf("Direita\n");
-        MovTorre(casas - 1);
+        printf("Direita\n"); // impressão do movimento da Torre
+        MovTorre(casas - 1); // decremento para não ter o loop infinito  na recusividade
     }
     
 }
 
-void MovRainha(int casas){
-    if (casas > 0)
+void MovRainha(int casas){ // Recursividade da peça Rainha - 8 casas para a "Esquerda"
+    if (casas > 0) // Condição da recursividade
     {
-        printf("Esquerda\n");
-        MovRainha(casas - 1);
+        printf("Esquerda\n"); // impressão do movimento da Rainha
+        MovRainha(casas - 1); // decremento para não ter o loop infinito na recusividade
     }
 }
 
-void MovBispo(int casas){
-    if (casas > 0)
+void MovBispo(int casas){ //Recursividade + loops aninhados peça: Bispo - 5 casa na diagonal direita ("Cima", "Direita")
+    if (casas > 0) //condição da recursividade
     {
-        printf("Cima\n");
-        printf("Direita\n");
-        MovBispo(casas - 1);
+        for (int i = 0; i < 1; i++) //loop externo - para mover para "Cima"
+        {
+            printf("Cima\n"); //imprime "Cima"
+            for (int j = 0; j < 1; j++) //loop interno - para mover para "Direita"
+            {
+                printf("Direita\n"); // Imprime "Direita" no loop - com o loop fazendo com que a peça se mova na "diagonal"
+            }
+        }
+        MovBispo(casas - 1); // Decremento para evitar o loop infinito
     }
     
 }
+
+
+void MovimentoCavalo(){
+    // Loop para mover o cavalo para cima duas vezes
+    for (int i = 0; i < 2; i++)
+    {
+        if(i == 1){
+            continue; //pula a segunda impressão de "Cima"
+        }
+        printf("Cima\n"); //Primeira movimentação "Cima"
+    }
+
+   // Loop para mover o cavalo para a direita
+   for (int k = 0; k < 2; k++)
+   {
+    if (k == 1)
+    {
+        break; //interrompe antes de um segundo movimento
+    }
+        printf("Direita\n"); // Primeira movimentação "Direita"
+   }
+   
+}
+
+
 int main() {
     // Nível Novato - Movimentação das Peças
     // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
@@ -90,18 +121,21 @@ int main() {
     // Exemplo: Crie uma função recursiva para o movimento do Bispo.
 
     printf("Movimentação Torre:\n");
-    MovTorre(5);
-    printf("\n");
+    MovTorre(5); // Chama a função para executar os movimentos, (5) delimita a quantidade de vezes que roda o loop - 5 vezes
+    printf("\n"); //Espaço entre os movimentos no terminal
 
     printf("Movimentação Bispo: \n");
-    MovBispo(5);
+    MovBispo(5); // (5) loops na diagonal "Cima", "Direita"
     printf("\n");
 
     printf("Movimentação Rainha:\n");
-    MovRainha(8);
+    MovRainha(8); //(8) loops para "Esquerda"
     printf("\n");
+
     // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
     // Inclua o uso de continue e break dentro dos loops.
-
+    printf("Movimentação Cavalo: \n");
+    MovimentoCavalo(); // Chama a função para executar os movimentos
+   
     return 0;
 }
